@@ -41,15 +41,16 @@
   when:
     - telegraf_agent_package_method == "repo"
   block:
-    - when: (ansible_distribution == "Debian" and ansible_distribution_major_version|int < 9) or (ansible_distribution == "Ubuntu" and ansible_distribution_major_version|int < 18)
-      name: "Debian | Download Telegraf apt key"
-      apt_key:
-        url: "https://repos.influxdata.com/influxdata-archive.key"
-        id: 7df8b07e
-        state: present
-      register: are_telegraf_dependencies_keys_installed
-      until: are_telegraf_dependencies_keys_installed is succeeded
-      become: true
+#    - when: (ansible_distribution == "Debian" and ansible_distribution_major_version|int < 9) or (ansible_distribution == "Ubuntu" and ansible_distribution_major_version|int < 18)
+#      name: "Debian | Download Telegraf apt key"
+#      apt_key:
+#        url: "https://repos.influxdata.com/influxdata-archive.key"
+#        id: 7df8b07e
+#        state: present
+#      register: are_telegraf_dependencies_keys_installed
+#      until: are_telegraf_dependencies_keys_installed is succeeded
+#      become: true
+
     - when: (ansible_distribution == "Debian" and ansible_distribution_major_version|int >= 9) or (ansible_distribution == "Ubuntu" and ansible_distribution_major_version|int >= 18)
       block:  
         - name: "Debian | Ensure the shared keyrings directory exists"
