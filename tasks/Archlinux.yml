@@ -16,11 +16,11 @@
   when:
     - ansible_architecture == "x86_64"
 
-- name: "Archlinux | Set telegraf_agent_package_arch specific for arm64/armv7l"
+- name: "Archlinux | Set telegraf_agent_package_arch specific for arm64/aarch64/armv7l"
   set_fact:
     telegraf_agent_package_arch: "armhf"
   when:
-    - ansible_architecture == "arm64" or ansible_architecture == "armv7l"
+    - ansible_architecture == "arm64" or ansible_architecture == "aarch64" or ansible_architecture == "armv7l"
 
 - name: "Archlinux | Create telegraf user"
   user:
